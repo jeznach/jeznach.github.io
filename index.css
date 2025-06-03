@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Aptos display, sans-serif;
+    background: #FFFFFF;
+    color: #000000;
+}
+h1{
+    font-weight: normal;
+    margin: 0 0 1em 0;
+}
+.centered-text {
+    text-align: center;
+}
+img {
+    text-align: center;
+    width: 720px;
+    height: 540px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.blok {
+    margin-top: 50px;
+}
