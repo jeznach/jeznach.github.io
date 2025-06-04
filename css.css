@@ -4,7 +4,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.blok {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  
+  height: 100%;
+  margin: 0;
+}
 html, body {
   height: 100%;
   font-family: Aptos Display, sans-serif;
