@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Mr. Spoon</title>
-    <link rel="stylesheet" href="css.css">
     <link rel="icon" type="image/x-icon" href="index.jpg">
 </head>
 <body>
@@ -22,5 +21,114 @@
 
   <div id="overlay" class="overlay"></div>
     <script src="script.js"></script>
+     <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .post {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .post h3 {
+      margin: 0 0 10px;
+      color: #007BFF;
+    }
+
+    .post p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Moje Posty</h1>
+  <form id="postForm">
+    <input type="text" id="title" placeholder="Tytuł posta" required />
+    <textarea id="content" placeholder="Treść posta" rows="5" required></textarea>
+    <button type="submit">Dodaj Post</button>
+  </form>
+
+  <div id="postsContainer"></div>
+
+  <script>
+    const postForm = document.getElementById('postForm');
+    const postsContainer = document.getElementById('postsContainer');
+
+    // Wczytaj zapisane posty z localStorage
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+    function renderPosts() {
+      postsContainer.innerHTML = '';
+      posts.forEach((post, index) => {
+        const postDiv = document.createElement('div');
+        postDiv.classList.add('post');
+        postDiv.innerHTML = \`
+          <h3>\${post.title}</h3>
+          <p>\${post.content}</p>
+        \`;
+        postsContainer.appendChild(postDiv);
+      });
+    }
+
+    postForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
+
+      if (title && content) {
+        posts.unshift({ title, content });
+        localStorage.setItem('posts', JSON.stringify(posts));
+        renderPosts();
+        postForm.reset();
+      }
+    });
+
+    renderPosts();
+  </script>
 </body>
 </html>
